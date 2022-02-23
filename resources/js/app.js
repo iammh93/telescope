@@ -20,7 +20,15 @@ window.Popper = require('popper.js').default;
 
 moment.tz.setDefault(Telescope.timezone);
 
-window.Telescope.basePath = '/' + window.Telescope.path;
+//To support telescope in subdirectory
+let path_name = window.location.pathname;
+let paths = path_name.split("/");
+
+if (paths[1] === "marketplace") {
+    window.Telescope.basePath = "/marketplace/" + window.Telescope.path;
+} else {
+    window.Telescope.basePath = '/' + window.Telescope.path;
+}
 
 let routerBasePath = window.Telescope.basePath + '/';
 
